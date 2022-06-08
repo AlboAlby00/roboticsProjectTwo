@@ -6,6 +6,8 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
+        - /LaserScanAll1
+        - /LaserScanMerged1
         - /LaserScanFront1
       Splitter Ratio: 0.5
     Tree Height: 549
@@ -97,8 +99,8 @@ Visualization Manager:
       Axis: Z
       Channel Name: intensity
       Class: rviz/LaserScan
-      Color: 255; 255; 255
-      Color Transformer: Intensity
+      Color: 204; 0; 0
+      Color Transformer: FlatColor
       Decay Time: 0
       Enabled: true
       Invert Rainbow: false
@@ -125,7 +127,7 @@ Visualization Manager:
       Axis: Z
       Channel Name: intensity
       Class: rviz/LaserScan
-      Color: 255; 25; 0
+      Color: 32; 74; 135
       Color Transformer: FlatColor
       Decay Time: 0
       Enabled: true
@@ -153,7 +155,7 @@ Visualization Manager:
       Axis: Z
       Channel Name: intensity
       Class: rviz/LaserScan
-      Color: 32; 74; 135
+      Color: 238; 238; 236
       Color Transformer: FlatColor
       Decay Time: 0
       Enabled: true
