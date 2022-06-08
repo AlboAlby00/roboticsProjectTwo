@@ -29,7 +29,7 @@ public:
 
         transformStamped.header.stamp = ros::Time::now();
         transformStamped.header.frame_id = "odom";
-        transformStamped.child_frame_id = "base_link";
+        transformStamped.child_frame_id = "base_footprint";
         transformStamped.transform.translation.x = x;
         transformStamped.transform.translation.y = y;
         transformStamped.transform.translation.z = 0.0;
@@ -47,7 +47,7 @@ public:
 
 int main(int argc, char **argv) {
 
-  ros::init(argc, argv, "broadcasterNode");
+  ros::init(argc, argv, "odom_tf");
 
   TfBroad br;
 

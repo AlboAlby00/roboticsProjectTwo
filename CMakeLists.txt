@@ -19,9 +19,9 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(odometry_tf src/odom_tf.cpp)
-add_dependencies(odometry_tf ${catkin_EXPORTED_TARGETS})
-target_link_libraries(odometry_tf ${catkin_LIBRARIES})
+add_executable(odom_tf src/odom_tf.cpp)
+add_dependencies(odom_tf ${catkin_EXPORTED_TARGETS})
+target_link_libraries(odom_tf ${catkin_LIBRARIES})
 
 
 
