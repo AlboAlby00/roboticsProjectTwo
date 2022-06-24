@@ -1,0 +1,3 @@
+<launch>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find robotics_project_two)/rviz/robot_navigation.rviz"/>
+</launch>
