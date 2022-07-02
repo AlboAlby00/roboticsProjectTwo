@@ -15,6 +15,18 @@ catkin_package(
 
 )
 
+# add_service_files(
+#   FILES
+#   Service1.srv
+#   Service2.srv
+# )
+
+catkin_install_python(PROGRAMS
+  scripts/trajectory_drawer.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+
+
 include_directories(
   ${catkin_INCLUDE_DIRS}
 )
