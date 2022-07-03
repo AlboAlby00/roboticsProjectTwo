@@ -1,0 +1,3 @@
+<launch>
+	<node pkg="robotics_project_two" name="trajectory_drawer" type="trajectory_drawer.py" output="screen"></node>
+</launch>

@@ -9,17 +9,24 @@ find_package(catkin REQUIRED COMPONENTS
   tf2
   tf2_ros
   dynamic_reconfigure
+  std_msgs
+  message_generation
 )
 
-catkin_package(
 
+
+
+add_service_files(
+  FILES
+  CreateMapAndTrajectoryImage.srv
 )
 
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
+
+catkin_package(CATKIN_DEPENDS message_runtime)
 
 catkin_install_python(PROGRAMS
   scripts/trajectory_drawer.py
