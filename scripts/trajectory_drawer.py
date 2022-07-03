@@ -17,12 +17,18 @@ import os
 from robotics_project_two.srv import CreateMapAndTrajectoryImage, ResetTrajectoryToDraw
 from geometry_msgs.msg import Pose, PoseWithCovarianceStamped
 import os
+import rospkg
 
-cwd = os.getcwd()
+
+rospack = rospkg.RosPack()
+package_path = rospack.get_path('robotics_project_two')
+
+line_thickness = 1
+line_color = (0,255,0)
 
 class BaseMap:
     def __init__(self,map,width,height,resolution,origin):
-        rospy.INFO("creating base map")
+        print("creating base map")
         self.map = map
         self.width = width
         self.height = height
@@ -36,9 +42,13 @@ class BaseMap:
     def trajectory_callback(self,data):
         x = data.pose.pose.position.x
         y = data.pose.pose.position.y
-        cellX = (x-self.origin.position.x)/self.resolution
-        cellY = (y-self.origin.position.x)/self.resolution
-        self.trajectory.append((cellX,cellY))
+        # cellX = (x-self.origin.position.x)/self.resolution
+        # cellY = (y-self.origin.position.y)/self.resolution
+        cellX = (y-self.origin.position.y)/self.resolution
+        cellY = (x-self.origin.position.x)/self.resolution
+        intCellX = int(cellX)
+        intCellY = int(cellY)
+        self.trajectory.append((intCellX,intCellY))
 
     def service_callback(self,data):
         size = (self.width,self.height)
@@ -53,17 +63,17 @@ class BaseMap:
         image[image == 100] = 0
 
         counter = 0
-        color = (0, 255, 0)
+        
         for (x,y) in self.trajectory:
             if(counter != 0):
-                cv2.line(image,previous,(x,y),color,5)
+                cv2.line(image,previous,(x,y),line_color,line_thickness)
             previous = (x,y)
             counter+=1
 
-        image = cv2.rotate(image, cv2.ROTATE_180)
+        # image = cv2.rotate(image, cv2.ROTATE_180)
         
-        filename = cwd+'/map_with_trajectory.png'
-        print ("saving image")
+        filename = package_path+'/map_with_trajectory.png'
+        print ("saving image to path "+filename)
         cv2.imwrite (filename,image)
 
     def reset_trajectory_callback(self,data):
@@ -71,13 +81,15 @@ class BaseMap:
 
 
 def save_map_callback(data):
-    rospy.INFO("salvo la mappa")
+    print("salvo la mappa")
     global baseMap
     baseMap = BaseMap(data.data,data.info.width,data.info.height,data.info.resolution,data.info.origin)
 
 def map_listener():
+    print("mappa da ricevere")
     rospy.init_node('trajectory_drawer',anonymous=False)
     rospy.wait_for_service('static_map')
+    print("mappa ricevuta")
     try:
         get_map = rospy.ServiceProxy('static_map',GetMap)
         map = get_map()

@@ -3,5 +3,5 @@
     <include file="$(find robotics_project_two)/launch/scan_merger.launch" />
 	<include file="$(find robotics_project_two)/launch/odom_tf.launch" />
     <include file="$(find robotics_project_two)/launch/gmapping.launch"/>
-    <include file="$(find robotics_project_two)/launch/rviz_for_gmapping.launch"/>
+    <include file="$(find robotics_project_two)/launch/rviz_robot_navigation.launch"/>
 </launch>
