@@ -19,6 +19,7 @@ find_package(catkin REQUIRED COMPONENTS
 add_service_files(
   FILES
   CreateMapAndTrajectoryImage.srv
+  ResetTrajectoryToDraw.srv
 )
 
 generate_messages(

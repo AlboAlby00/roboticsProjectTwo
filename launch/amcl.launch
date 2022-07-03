@@ -1,7 +1,7 @@
 <launch>
     <include file="$(find robotics_project_two)/launch/static_laser_tf.launch" />
     <include file="$(find robotics_project_two)/launch/scan_merger.launch" />
-	<include file="$(find robotics_project_two)/launch/odom_tf.launch" />
+	  <include file="$(find robotics_project_two)/launch/odom_tf.launch" />
 
   <!-- Map Server Arguments -->
 
@@ -54,4 +54,5 @@
     <param name="base_frame_id"             value="base_footprint"/> -->
 
   </node>
+  <node pkg="robotics_project_two" name="trajectory_drawer" type="trajectory_drawer.py" output="screen"/>
 </launch>
